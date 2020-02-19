@@ -1,0 +1,97 @@
+@import '@uppy/core/dist/style.css';
+@import '@uppy/dashboard/dist/style.css';
+
+.content blockquote {
+  background: none;
+  border: none;
+  padding: 0 1.5em;
+}
+
+.content table {
+
+  td,
+  th {
+    vertical-align: inherit;
+    word-break: break-word;
+  }
+}
+
+.content table {
+  width: inherit !important;
+}
+
+
+
+.content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.content iframe {
+  height: auto;
+  max-width: 100%;
+}
+
+.ProseMirror {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  resize: vertical;
+  overflow-y: scroll;
+}
+
+.ProseMirror .editor-placeholder {
+  color: #aaa;
+  pointer-events: none;
+  height: 0;
+}
+
+.ProseMirror:focus .editor-placeholder {
+  display: none;
+}
+
+// IE10+
+@media all and (-ms-high-contrast: none),
+(-ms-high-contrast: active) {
+  .content ::selection {
+    background-color: transparent;
+  }
+
+  .content:focus ::selection {
+    background-color: rgba(118, 166, 250, 0.5);
+  }
+}
+
+.selection-marker {
+  background-color: rgba(118, 166, 250, 0.5);
+  border-top: 1px solid rgba(118, 167, 250, 0.5);
+  border-bottom: 1px solid rgba(118, 167, 250, 0.5);
+
+  -webkit-background-clip: padding-box;
+  /* for Safari */
+  background-clip: padding-box;
+  /* for IE9+, Firefox 4+, Opera, Chrome */
+}
+
+.content .block {
+  margin-bottom: 0 !important;
+}
+
+.content .block:not(:last-of-type) {
+  margin-bottom: 1em !important;
+}
+
+.editor-align-right {
+  text-align: right;
+}
+
+.editor-align-left {
+  text-align: left;
+}
+
+.editor-align-center {
+  text-align: center;
+}
+
+.editor-align-justify {
+  text-align: justify;
+}

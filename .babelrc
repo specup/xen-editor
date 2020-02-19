@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "@babel/preset-typescript",
+    "@babel/preset-react",
+    ["@babel/preset-env", {
+      "targets": "last 2 version, ie 11",
+      "useBuiltIns": "entry",
+      "corejs": "3"
+    }]
+  ]
+}
