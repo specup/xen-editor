@@ -1,4 +1,5 @@
 export * from './core'
+export * from './api'
 export * from './types'
 export { Schema, Attrs } from './schema'
 

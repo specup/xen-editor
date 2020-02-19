@@ -1,8 +1,8 @@
-export { default as Editor, EditorAPI, EditorProps } from './Editor'
+export { default as Editor, EditorProps } from './Editor'
 export {
   default as FileUploadDialog,
   FileUploadDialogAPI,
   FileUploadDialogProps,
 } from './FileUploadDialog'
-export * from './prosemirror/core'
+export * from './prosemirror'
 export { getAssetInfo } from './utils'
