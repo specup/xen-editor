@@ -48,7 +48,7 @@ const Editor: RefForwardingComponent<EditorAPI, EditorProps> = (
   useImperativeHandle(
     ref,
     () => createAPI(proseMirrorRef.current),
-    [],
+    [proseMirrorRef.current],
   )
 
   const render = useCallback(
