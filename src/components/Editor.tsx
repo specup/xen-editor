@@ -45,11 +45,7 @@ const Editor: RefForwardingComponent<EditorAPI, EditorProps> = (
 ) => {
   const proseMirrorRef = useRef<ProseMirrorInstance>(null)
 
-  useImperativeHandle(
-    ref,
-    () => createAPI(proseMirrorRef.current),
-    [proseMirrorRef.current],
-  )
+  useImperativeHandle(ref, () => createAPI(proseMirrorRef), [])
 
   const render = useCallback(
     (ref: Ref) => {

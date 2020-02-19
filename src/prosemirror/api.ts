@@ -1,3 +1,4 @@
+import { RefObject } from 'react'
 import { DOMSerializer } from 'prosemirror-model'
 import { ProseMirrorInstance, EditorView } from './core'
 import schema from './schema'
@@ -55,28 +56,28 @@ export interface EditorAPI {
   isDirty(): boolean
 }
 
-export function createAPI(instance: ProseMirrorInstance | null): EditorAPI {
+export function createAPI(ref: RefObject<ProseMirrorInstance>): EditorAPI {
   return {
     view() {
-      return instance && instance.view
+      return ref.current?.view ?? null
     },
     dom() {
-      const view = instance && instance.view
+      const view = this.view()
       return view && getDOM(view)
     },
     html() {
-      const view = instance && instance.view
+      const view = this.view()
       return view && getHTML(view)
     },
     isEmpty() {
-      const view = instance && instance.view
+      const view = this.view()
       return view ? isViewEmpty(view) : true
     },
     isDirty() {
-      if (!instance) {
+      if (!ref.current) {
         return false
       }
-      const { view, initialState } = instance
+      const { view, initialState } = ref.current
       return view.state !== initialState
     },
   }
