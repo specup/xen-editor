@@ -18,7 +18,7 @@ function domToString(dom: DocumentFragment) {
 }
 
 function linebreak(str) {
-  var output = str.replace(/<\s?(p|br)[^<]*>/gi, function(x, tag) {
+  const output = str.replace(/<\s?(p|br)[^<]*>/gi, function(x, tag) {
     switch (tag.toLowerCase()) {
       case 'p':
         return '\n'
