@@ -86,6 +86,15 @@ const EditorContainer: React.FC<Partial<EditorProps>> = props => {
       >
         Show current HTML
       </button>
+      <button
+        onClick={() => {
+          console.log(ref.current && ref.current.text())
+          action('text')(ref.current && ref.current.text())
+        }}
+      >
+        Show current TEXT
+      </button>
+
       <StyledEditor
         onChange={view => {
           console.log(view)
