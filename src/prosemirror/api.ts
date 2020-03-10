@@ -105,7 +105,7 @@ export function createAPI(ref: RefObject<ProseMirrorInstance>): EditorAPI {
     clearState() {
       const view = this.view()
       if (view) {
-        clearState(view.state, view.dispatch, view)
+        clearState(view.state, view.dispatch)
       }
     },
 
