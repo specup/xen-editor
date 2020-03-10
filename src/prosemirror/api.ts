@@ -3,6 +3,7 @@ import { DOMSerializer } from 'prosemirror-model'
 import { Schema as BaseSchema } from 'prosemirror-model'
 import { ProseMirrorInstance, EditorView } from './core'
 import schema from './schema'
+import { clearState } from './utils/commands'
 import { Fragment } from './types'
 
 function fragmentToDOM(fragment: Fragment) {
@@ -80,6 +81,7 @@ export interface EditorAPI {
   dom(): DocumentFragment | null
   isEmpty(): boolean
   isDirty(): boolean
+  clearState(): void
 }
 
 export function createAPI(ref: RefObject<ProseMirrorInstance>): EditorAPI {
@@ -99,6 +101,14 @@ export function createAPI(ref: RefObject<ProseMirrorInstance>): EditorAPI {
       const view = this.view()
       return view && getText(view)
     },
+
+    clearState() {
+      const view = this.view()
+      if (view) {
+        clearState(view.state, view.dispatch, view)
+      }
+    },
+
     isEmpty() {
       const view = this.view()
       return view ? isViewEmpty(view) : true
