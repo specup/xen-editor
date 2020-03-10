@@ -1,4 +1,4 @@
-import { EditorState } from 'prosemirror-state'
+import { EditorState, AllSelection } from 'prosemirror-state'
 import { EditorView } from 'prosemirror-view'
 import { Command } from '../commands'
 
@@ -18,5 +18,13 @@ export const filter = (
     }
 
     return cmd(state, dispatch, view) || false
+  }
+}
+
+export const clearState: Command = (state, dispatch) => {
+  if (dispatch) {
+    dispatch(
+      state.tr.setSelection(new AllSelection(state.doc)).deleteSelection(),
+    )
   }
 }
