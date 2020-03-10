@@ -1,3 +1,5 @@
+## 1.0.18
+
 ###### _2020-03-10_
 
 - Add clear state command (#2) @jeongsd
