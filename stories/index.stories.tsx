@@ -7,7 +7,6 @@ import 'bulma/css/bulma.css'
 import axios from 'axios'
 
 import Editor, { EditorAPI, EditorProps } from '../src/components/Editor'
-import { clearState } from '../src'
 import '../src/style.scss'
 import exampleDocument from './example-document'
 
@@ -94,6 +93,14 @@ const EditorContainer: React.FC<Partial<EditorProps>> = props => {
       >
         Show current TEXT
       </button>
+      <button
+        onClick={() => {
+          action('append content')(ref.current && ref.current.appendContent('<p><b>I am</b> <em>appended</em></p>'))
+        }}
+      >
+        append content
+      </button>
+
       <button
         onClick={() => {
           action('clear state')(ref.current && ref.current.clearState())

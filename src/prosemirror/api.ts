@@ -1,5 +1,5 @@
 import { RefObject } from 'react'
-import { DOMSerializer } from 'prosemirror-model'
+import { DOMParser, DOMSerializer } from 'prosemirror-model'
 import { Schema as BaseSchema } from 'prosemirror-model'
 import { ProseMirrorInstance, EditorView } from './core'
 import schema from './schema'
@@ -81,6 +81,7 @@ export interface EditorAPI {
   dom(): DocumentFragment | null
   isEmpty(): boolean
   isDirty(): boolean
+  appendContent(html: string): void
   clearState(): void
 }
 
@@ -100,6 +101,20 @@ export function createAPI(ref: RefObject<ProseMirrorInstance>): EditorAPI {
     text() {
       const view = this.view()
       return view && getText(view)
+    },
+
+    appendContent(html: string) {
+      const view = this.view()
+      if (!view) {
+        return
+      }
+
+      const el = document.createElement('div')
+      el.innerHTML = html
+
+      const doc = DOMParser.fromSchema(schema).parse(el)
+      const tr = view.state.tr.insert(0, doc)
+      view.dispatch(tr)
     },
 
     clearState() {
