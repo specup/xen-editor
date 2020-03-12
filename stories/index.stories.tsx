@@ -93,6 +93,15 @@ const EditorContainer: React.FC<Partial<EditorProps>> = props => {
       >
         Show current TEXT
       </button>
+
+      <button
+        onClick={() => {
+          action('set content')(ref.current && ref.current.setContent('<p><b>I am</b> <em>set</em></p>'))
+        }}
+      >
+        set content
+      </button>
+
       <button
         onClick={() => {
           action('append content')(ref.current && ref.current.appendContent('<p><b>I am</b> <em>appended</em></p>'))

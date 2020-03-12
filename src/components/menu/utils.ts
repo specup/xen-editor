@@ -1,4 +1,4 @@
-import { EditorState, Node, Mark, MarkType, Dispatch, schema } from '../../prosemirror'
+import { EditorState, Node, Mark, MarkType, Dispatch, schema, Command } from '../../prosemirror'
 
 export function markActive(state: EditorState, type: MarkType) {
   const { from, $from, to, empty } = state.selection
@@ -108,15 +108,19 @@ export function getBackgroundColor(state: EditorState) {
   })
 }
 
-export function setMark(markType: MarkType, attrs: any) {
-  return (state: EditorState, dispatch: Dispatch) => {
+export function setMark(markType: MarkType, attrs: any): Command {
+  return (state, dispatch) => {
     const { empty, from, to } = state.selection
     const mark = markType.create(attrs)
     const tr = empty
       ? state.tr.addStoredMark(mark)
       : state.tr.addMark(from, to, mark)
 
-    return dispatch(tr)
+    if (dispatch) {
+      dispatch(tr)
+    }
+
+    return true
   }
 }
 
