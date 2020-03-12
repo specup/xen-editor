@@ -4,6 +4,7 @@ import React, {
   useRef,
   useCallback,
   useImperativeHandle,
+  FocusEventHandler,
 } from 'react'
 import isMobile from 'ismobilejs'
 
@@ -29,6 +30,8 @@ export interface EditorProps extends FileUploadUtils {
   initialValue?: string
   placeholder?: string
   onChange?: (view: EditorView) => void
+  onFocus?: FocusEventHandler<HTMLDivElement>
+  onBlur?: FocusEventHandler<HTMLDivElement>
 }
 
 const Editor: RefForwardingComponent<EditorAPI, EditorProps> = (
@@ -39,6 +42,8 @@ const Editor: RefForwardingComponent<EditorAPI, EditorProps> = (
     initialValue,
     placeholder,
     onChange,
+    onFocus,
+    onBlur,
     ...other
   },
   ref,
@@ -51,17 +56,25 @@ const Editor: RefForwardingComponent<EditorAPI, EditorProps> = (
     (ref: Ref) => {
       const element = <div ref={ref} />
       return isMobile.any ? (
-        <MobileLayout className={className}>{element}</MobileLayout>
+        <MobileLayout
+          className={className}
+          onFocus={onFocus}
+          onBlur={onBlur}
+        >
+          {element}
+        </MobileLayout>
       ) : (
         <DesktopLayout
           className={className}
           menuClassName={desktopMenuClassName}
+          onFocus={onFocus}
+          onBlur={onBlur}
         >
           {element}
         </DesktopLayout>
       )
     },
-    [className, desktopMenuClassName],
+    [className, desktopMenuClassName, onFocus, onBlur],
   )
 
   return (
