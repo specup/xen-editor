@@ -135,7 +135,7 @@ export const ProseMirror = forwardRef<
       setInstance(null)
       proseMirror.view.destroy()
     }
-  }, [className, initialValue, onChange, placeholder])
+  }, [className, onChange, placeholder])
 
   const handleRef = useCallback(
     (dom: HTMLDivElement | null) => {

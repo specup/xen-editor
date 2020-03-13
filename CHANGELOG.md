@@ -1,3 +1,9 @@
+## 2.0.0
+
+###### _2020-03-13_
+
+- prevent instance recreation on initialValue change (#5) @pawsong
+
 ## 1.0.20
 
 ###### _2020-03-12_
