@@ -9,7 +9,7 @@ export type Command = (
   state: EditorState,
   dispatch?: CommandDispatch,
   view?: EditorView,
-) => boolean | void
+) => boolean
 
 export const createToggleBlockMarkOnRange = <T = object>(
   markType: MarkType,

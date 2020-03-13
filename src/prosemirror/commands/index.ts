@@ -1,12 +1,13 @@
-import { EditorState, Dispatch, Node, Attrs } from '../../prosemirror'
+import { Node, Attrs } from '../../prosemirror'
+import { Command } from './base'
 export * from './base'
 export * from './alignment'
 
 function setAttrs(
   predicate: (node: Node) => boolean,
   update: (node: Node) => Attrs,
-) {
-  return (state: EditorState, dispatch: Dispatch) => {
+): Command {
+  return (state, dispatch) => {
     const { from, to } = state.selection
 
     const tr = state.tr
@@ -21,7 +22,11 @@ function setAttrs(
       })
     })
 
-    dispatch(tr)
+    if (dispatch) {
+      dispatch(tr)
+    }
+
+    return true
   }
 }
 
@@ -51,8 +56,11 @@ export function setLineHeight(lineHeight: number) {
   )
 }
 
-export function insertNode(node: Node) {
-  return (state: EditorState, dispatch: Dispatch) => {
-    dispatch(state.tr.replaceSelectionWith(node))
+export function insertNode(node: Node): Command {
+  return (state, dispatch) => {
+    if (dispatch) {
+      dispatch(state.tr.replaceSelectionWith(node))
+    }
+    return true
   }
 }

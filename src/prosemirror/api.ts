@@ -1,9 +1,8 @@
 import { RefObject } from 'react'
-import { DOMParser, DOMSerializer } from 'prosemirror-model'
-import { Schema as BaseSchema } from 'prosemirror-model'
+import { DOMSerializer } from 'prosemirror-model'
 import { ProseMirrorInstance, EditorView } from './core'
 import schema from './schema'
-import { clearState } from './utils/commands'
+import { setContent, appendContent, clearState } from './utils/commands'
 import { Fragment } from './types'
 
 function fragmentToDOM(fragment: Fragment) {
@@ -81,6 +80,7 @@ export interface EditorAPI {
   dom(): DocumentFragment | null
   isEmpty(): boolean
   isDirty(): boolean
+  setContent(html: string): void
   appendContent(html: string): void
   clearState(): void
 }
@@ -103,18 +103,18 @@ export function createAPI(ref: RefObject<ProseMirrorInstance>): EditorAPI {
       return view && getText(view)
     },
 
+    setContent(html: string) {
+      const view = this.view()
+      if (view) {
+        setContent(html)(view.state, view.dispatch)
+      }
+    },
+
     appendContent(html: string) {
       const view = this.view()
-      if (!view) {
-        return
+      if (view) {
+        appendContent(html)(view.state, view.dispatch)
       }
-
-      const el = document.createElement('div')
-      el.innerHTML = html
-
-      const doc = DOMParser.fromSchema(schema).parse(el)
-      const tr = view.state.tr.insert(0, doc)
-      view.dispatch(tr)
     },
 
     clearState() {
