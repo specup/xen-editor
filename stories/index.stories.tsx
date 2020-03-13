@@ -126,6 +126,8 @@ const EditorContainer: React.FC<Partial<EditorProps>> = props => {
         completeUpload={completeUpload}
         {...props}
         ref={ref}
+        onBlur={() => console.log('onBlur')}
+        onFocus={() => console.log('onFocus')}
       />
     </>
   )

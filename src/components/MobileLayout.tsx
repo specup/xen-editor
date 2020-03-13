@@ -1,9 +1,8 @@
 import React, {
   FunctionComponent,
   useCallback,
-  RefObject,
   useRef,
-  useEffect,
+  FocusEventHandler,
 } from 'react'
 import styled from 'styled-components'
 import MenuItemInsertImage, {
@@ -23,6 +22,8 @@ const Root = styled.div`
 
 interface MobileLayoutProps {
   className?: string
+  onFocus?: FocusEventHandler<HTMLDivElement>
+  onBlur?: FocusEventHandler<HTMLDivElement>
 }
 
 const IconButton = styled.button`
@@ -74,10 +75,12 @@ function renderInsertYoutube(onClick: () => any) {
 
 const MobileLayout: FunctionComponent<MobileLayoutProps> = ({
   className,
+  onFocus,
+  onBlur,
   children,
 }) => {
   return (
-    <div className={className}>
+    <div className={className} onFocus={onFocus} onBlur={onBlur}>
       {children}
       <Root>
         <MenuItemInsertImageContainer />
