@@ -1,5 +1,5 @@
 {
-  "name": "@specup/editor",
+  "name": "xen-editor",
   "version": "2.1.0",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
