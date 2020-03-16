@@ -4,18 +4,22 @@ Xen prosemirror editor
 
 ## Installation
 
+```bash
+$ yarn add xen-editor
+```
+
 ### Peer Dependencies
 
 ```bash
-yarn add react styled-components bulma
+$ yarn add react styled-components bulma
 ```
 
 ## Usage
 
 ```jsx
 import 'bulma/css/bulma.css'
-import '@specup/editor/dist/style.css'
-import { Editor } from '@specup/editor'
+import 'xen-editor/dist/style.css'
+import { Editor } from 'xen-editor'
 
 const EditorContainer = () => {
   const ref = useRef(null)
