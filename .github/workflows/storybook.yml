@@ -1,0 +1,26 @@
+name: Github Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install
+        env:
+          CI: true
+
+      - name: Build storybook
+        run: yarn build-storybook
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_dir: ./storybook-static
