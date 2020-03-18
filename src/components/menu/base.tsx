@@ -22,7 +22,7 @@ const ButtonsBase: FunctionComponent<ButtonsBaseProps> = ({ className, children 
 }
 
 export const Buttons = styled(ButtonsBase)({
-  'display': 'inline-block !important',
+  display: 'inline-block !important',
   marginBottom: '0 !important',
 
   '& + &': {
