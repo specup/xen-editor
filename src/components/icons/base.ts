@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import { styled } from '@material-ui/core/styles'
 
-export const Svg = styled.svg`
-  width: 16px;
-`
+export const Svg = styled('svg')({
+  width: 16,
+})
 
-export const SvgSmall = styled.svg`
-  width: 12px;
-`
+export const SvgSmall = styled('svg')({
+  width: 12,
+})

@@ -11,7 +11,7 @@ import {
 import { Plugin } from 'prosemirror-state'
 import { dropCursor } from 'prosemirror-dropcursor'
 import { gapCursor } from 'prosemirror-gapcursor'
-import cn from 'classnames'
+import cn from 'clsx'
 
 import { buildKeymap } from './keymap'
 import { buildInputRules } from './inputrules'

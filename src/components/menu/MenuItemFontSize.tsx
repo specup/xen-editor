@@ -5,16 +5,16 @@ import React, {
   FormEvent,
   KeyboardEvent,
 } from 'react'
-import styled from 'styled-components'
+import { styled } from '@material-ui/core/styles'
 import { ArrowUpIcon, ArrowDownIcon } from '../icons'
 import { getFontSize, setMark } from './utils'
 import Overlay from './Overlay'
 import { useProseMirrorState, schema } from '../../prosemirror'
 import { Dropdown, DropdownItem } from './base'
 
-const Field = styled.div`
-  margin-bottom: 0 !important;
-`
+const Field = styled('div')({
+  marginBottom: '0 !important',
+})
 
 interface FontSizeInputProps {
   value: number | null
@@ -39,10 +39,10 @@ function createInputState(value: number | null): InputState | null {
   }
 }
 
-const Input = styled.input`
-  box-shadow: none;
-  width: 36px !important;
-`
+const Input = styled('input')({
+  boxShadow: 'none',
+  width: '36px !important',
+})
 
 const FontSizeInput: FunctionComponent<FontSizeInputProps> = ({
   value,
