@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import cn from 'classnames'
+import cn from 'clsx'
 
 interface ModalProps {
   isOpen: boolean

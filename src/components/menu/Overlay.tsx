@@ -1,10 +1,10 @@
 import React, { CSSProperties, forwardRef, RefForwardingComponent } from 'react'
-import styled from 'styled-components'
+import { styled } from '@material-ui/core/styles'
 import Backdrop from './Backdrop'
 
-const OverlayRoot = styled.div`
-  position: absolute;
-`
+const OverlayRoot = styled('div')({
+  position: 'absolute',
+})
 
 interface OverlayProps {
   open: boolean

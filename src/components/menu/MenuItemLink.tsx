@@ -5,7 +5,7 @@ import React, {
   useRef,
   FormEvent,
 } from 'react'
-import styled from 'styled-components'
+import { styled } from '@material-ui/core/styles'
 import {
   useProseMirrorState,
   schema,
@@ -79,9 +79,9 @@ const LinkForm: FunctionComponent<LinkFormProps> = ({ view, onSubmit }) => {
 
 const MARGIN = 40
 
-const Input = styled.input`
-  min-width: 400px;
-`
+const Input = styled('input')({
+  minWidth: 400,
+})
 
 const removeLinkMark = removeMark(schema.marks.link)
 

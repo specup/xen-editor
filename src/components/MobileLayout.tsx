@@ -4,21 +4,21 @@ import React, {
   useRef,
   FocusEventHandler,
 } from 'react'
-import styled from 'styled-components'
+import { styled } from '@material-ui/core/styles'
 import MenuItemInsertImage, {
   MenuItemInsertImageAPI,
 } from './menu/MenuItemInsertImage'
 import MenuItemInsertYoutube from './menu/MenuItemInsertYoutube'
 import { ImageLargeIcon, YoutubeLargeIcon } from './icons'
 
-const Root = styled.div`
-  border-top: 1px solid #e8e8e8;
-  border-bottom: 1px solid #e8e8e8;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: flex;
-  padding-left: 10px;
-`
+const Root = styled('div')({
+  borderTop: '1px solid #e8e8e8',
+  borderBottom: '1px solid #e8e8e8',
+  paddingTop: 10,
+  paddingBottom: 10,
+  display: 'flex',
+  paddingLeft: 10,
+})
 
 interface MobileLayoutProps {
   className?: string
@@ -26,24 +26,22 @@ interface MobileLayoutProps {
   onBlur?: FocusEventHandler<HTMLDivElement>
 }
 
-const IconButton = styled.button`
-  /* width: 30px;
-  height: 30px; */
-  padding: 3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-right: 5px;
-  border-radius: 50%;
-  background-color: white;
-  border: none;
-  cursor: pointer;
+const IconButton = styled('button')({
+  padding: 3,
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginRight: 5,
+  borderRadius: '50%',
+  backgroundColor: 'white',
+  border: 'none',
+  cursor: 'pointer',
 
-  svg {
-    width: 40px;
-    height: 40px;
+  '& svg': {
+    width: 40,
+    height: 40,
   }
-`
+})
 
 const MenuItemInsertImageContainer: FunctionComponent = () => {
   const apiRef = useRef<MenuItemInsertImageAPI | null>(null)

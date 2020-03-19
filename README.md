@@ -11,7 +11,7 @@ $ yarn add xen-editor
 ### Peer Dependencies
 
 ```bash
-$ yarn add react styled-components bulma
+$ yarn add react bulma
 ```
 
 ## Usage

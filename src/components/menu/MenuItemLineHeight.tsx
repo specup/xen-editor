@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState, useCallback } from 'react'
-import cn from 'classnames'
+import cn from 'clsx'
 import { useProseMirrorState, EditorState } from '../../prosemirror'
 import { LineHeightIcon } from '../icons'
 import Overlay from './Overlay'

@@ -1,15 +1,15 @@
 import React, { FunctionComponent, useState, useCallback } from 'react'
 import { SketchPicker } from 'react-color'
-import styled from 'styled-components'
+import { styled } from '@material-ui/core/styles'
 import { useProseMirrorState, schema } from '../../prosemirror'
 import { ColorTextIcon, ColorBackgroundIcon } from '../icons'
 import { getFontColor, getBackgroundColor, setMark } from './utils'
 import Overlay from './Overlay'
 import { Buttons, MenuButton } from './base'
 
-const StyledOverlay = styled(Overlay)`
-  margin-top: 4px;
-`
+const StyledOverlay = styled(Overlay)({
+  marginTop: 4,
+})
 
 const MenuItemTextColor: FunctionComponent = () => {
   const [color, applyCommand] = useProseMirrorState(getFontColor)

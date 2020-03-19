@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState, useCallback } from 'react'
-import styled from 'styled-components'
+import { styled } from '@material-ui/core/styles'
 import { useProseMirrorState, schema } from '../../prosemirror'
 import { ArrowUpIcon, ArrowDownIcon } from '../icons'
 import { getFontFamily, setMark } from './utils'
@@ -24,10 +24,10 @@ const LABELS = {
   'NanumMyeongjo': '나눔명조',
 }
 
-const FontSpan = styled.span`
-  min-width: 60px;
-  text-align: left;
-`
+const FontSpan = styled('span')({
+  minWidth: 60,
+  textAlign: 'left',
+})
 
 const MenuItemFontFamily: FunctionComponent = () => {
   const [open, setOpen] = useState(false)

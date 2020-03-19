@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useCallback, useRef } from 'react'
-import styled from 'styled-components'
+import { styled } from '@material-ui/core/styles'
 import { ImageIcon, YoutubeIcon } from '../icons'
 import MenuItemFontFamily from './MenuItemFontFamily'
 import MenuItemFontSize from './MenuItemFontSize'
@@ -13,19 +13,19 @@ import MenuItemInsertYoutube from './MenuItemInsertYoutube'
 import MenuItemLink from './MenuItemLink'
 import { Buttons, MenuButton } from './base'
 
-const MenuRoot = styled.div`
-  display: flex;
-  margin: 10px 0;
-`
+const MenuRoot = styled('div')({
+  display: 'flex',
+  margin: '10px 0',
+})
 
-const MenuSection = styled.div`
-  display: inline-block;
-  padding: 0 10px;
+const MenuSection = styled('div')({
+  display: 'inline-block',
+  padding: '0 10px',
 
-  & + & {
-    border-left: 1px solid #dbdbdb;
-  }
-`
+  '& + &': {
+    borderLeft: '1px solid #dbdbdb',
+  },
+})
 
 interface MenuBarProps {
   className?: string

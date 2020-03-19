@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import styled from 'styled-components'
+import { makeStyles } from '@material-ui/core/styles'
 import 'bulma/css/bulma.css'
 import axios from 'axios'
 
@@ -12,14 +12,14 @@ import exampleDocument from './example-document'
 
 const EDITOR_CLASS_NAME = 'editor'
 
-const StyledEditor = styled(Editor).attrs({
-  editorClassName: EDITOR_CLASS_NAME,
-})`
-  .${EDITOR_CLASS_NAME} {
-    min-height: 300px;
-    max-width: 842px;
-  }
-`
+const useStyles = makeStyles({
+  editor: {
+    [`& .${EDITOR_CLASS_NAME}`]: {
+      minHeight: 300,
+      maxWidth: 842,
+    },
+  },
+})
 
 async function createUploadURL(contentType: string) {
   const response = await axios.post('http://localhost:4000/graphql', {
@@ -51,31 +51,13 @@ async function createUploadURL(contentType: string) {
   }
 }
 
-async function completeUpload(attachmentID: string) {
-  await axios.post('http://localhost:4000/graphql', {
-    query: `
-      mutation ($attachmentID: ID!) {
-        postCompleteAttachmentUpload(attachmentID: $attachmentID) {
-          attachment {
-            id
-            post {
-              id
-              attachments {
-                id
-              }
-            }
-          }
-        }
-      }
-    `,
-    variables: {
-      attachmentID,
-    },
-  })
+async function completeUpload(meta: any[]) {
+  console.log(meta)
 }
 
 const EditorContainer: React.FC<Partial<EditorProps>> = props => {
   const ref = useRef<EditorAPI>(null)
+  const classes = useStyles()
 
   return (
     <>
@@ -118,7 +100,9 @@ const EditorContainer: React.FC<Partial<EditorProps>> = props => {
         clear state
       </button>
 
-      <StyledEditor
+      <Editor
+        className={classes.editor}
+        editorClassName={EDITOR_CLASS_NAME}
         onChange={view => {
           console.log(view)
         }}

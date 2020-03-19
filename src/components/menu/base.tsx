@@ -1,26 +1,38 @@
 import React, { FunctionComponent, PropsWithChildren, useCallback } from 'react'
-import styled from 'styled-components'
-import cn from 'classnames'
+import { styled } from '@material-ui/core/styles'
+import cn from 'clsx'
 
-export const InlineBlock = styled.div`
-  display: inline-block;
-  & + & {
-    margin-left: 5px;
-  }
-`
+export const InlineBlock = styled('div')({
+  display: 'inline-block',
+  '& + &': {
+    marginLeft: 5,
+  },
+})
 
-export const Buttons = styled.div.attrs({ className: 'buttons has-addons' })`
-  display: inline-block !important;
-  margin-bottom: 0 !important;
+interface ButtonsBaseProps {
+  className?: string
+}
 
-  & + & {
-    margin-left: 10px;
-  }
+const ButtonsBase: FunctionComponent<ButtonsBaseProps> = ({ className, children }) => {
+  return (
+    <div className={cn('buttons has-addons', className)}>
+      {children}
+    </div>
+  )
+}
 
-  & > .button {
-    margin-bottom: 0 !important;
-  }
-`
+export const Buttons = styled(ButtonsBase)({
+  display: 'inline-block !important',
+  marginBottom: '0 !important',
+
+  '& + &': {
+    marginLeft: 10,
+  },
+
+  '& > .button': {
+    marginBottom: '0 !important',
+  },
+})
 
 interface MenuButtonProps {
   onClick: () => any
@@ -47,32 +59,32 @@ export interface MenuAPI {
   update: () => any
 }
 
-export const Dropdown = styled.div`
-  & .dropdown-content {
-    max-height: 250px;
-    overflow-y: scroll;
-  }
+export const Dropdown = styled('div')({
+  '& .dropdown-content': {
+    maxHeight: 250,
+    overflowY: 'scroll',
+  },
 
   /* width */
-  & ::-webkit-scrollbar {
-    width: 8px;
-  }
+  '& ::-webkit-scrollbar': {
+    width: 8,
+  },
 
   /* Track */
-  & ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
+  '& ::-webkit-scrollbar-track': {
+    background: '#f1f1f1',
+  },
 
   /* Handle */
-  & ::-webkit-scrollbar-thumb {
-    background: #888;
-  }
+  '& ::-webkit-scrollbar-thumb': {
+    background: '#888',
+  },
 
   /* Handle on hover */
-  & ::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-`
+  '& ::-webkit-scrollbar-thumb:hover': {
+    background: '#555',
+  },
+})
 
 interface DropdownItemProps<T> {
   currentValue: T | null
