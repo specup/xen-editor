@@ -1,6 +1,6 @@
 # XEN Editor
 
-Xen prosemirror editor
+XEN editor는 (아직은) 스펙업 내부 서비스에서 사용하기 위해 만들어진 react, prosemirror 기반의 에디터입니다.
 
 ## Installation
 
