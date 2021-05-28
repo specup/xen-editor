@@ -39,10 +39,8 @@ async function createUploadURL(contentType: string) {
     },
   })
 
-  const {
-    signedURL,
-    attachment,
-  } = response.data.data.postPrepareAttachmentUpload
+  const { signedURL, attachment } =
+    response.data.data.postPrepareAttachmentUpload
 
   return {
     putURL: signedURL,
@@ -55,7 +53,7 @@ async function completeUpload(meta: any[]) {
   console.log(meta)
 }
 
-const EditorContainer: React.FC<Partial<EditorProps>> = props => {
+const EditorContainer: React.FC<Partial<EditorProps>> = (props) => {
   const ref = useRef<EditorAPI>(null)
   const classes = useStyles()
 
@@ -78,7 +76,10 @@ const EditorContainer: React.FC<Partial<EditorProps>> = props => {
 
       <button
         onClick={() => {
-          action('set content')(ref.current && ref.current.setContent('<p><b>I am</b> <em>set</em></p>'))
+          action('set content')(
+            ref.current &&
+              ref.current.setContent('<p><b>I am</b> <em>set</em></p>'),
+          )
         }}
       >
         set content
@@ -86,7 +87,10 @@ const EditorContainer: React.FC<Partial<EditorProps>> = props => {
 
       <button
         onClick={() => {
-          action('append content')(ref.current && ref.current.appendContent('<p><b>I am</b> <em>appended</em></p>'))
+          action('append content')(
+            ref.current &&
+              ref.current.appendContent('<p><b>I am</b> <em>appended</em></p>'),
+          )
         }}
       >
         append content
@@ -101,9 +105,20 @@ const EditorContainer: React.FC<Partial<EditorProps>> = props => {
       </button>
 
       <Editor
+        menus={[
+          'FontFamily',
+          'FontSize',
+          'Align',
+          'Color',
+          'Indent',
+          ['InsertImage', 'InsertYoutube'],
+          'LineHeight',
+          'Link',
+          'TextDecoration',
+        ]}
         className={classes.editor}
         editorClassName={EDITOR_CLASS_NAME}
-        onChange={view => {
+        onChange={(view) => {
           console.log(view)
         }}
         createUploadURL={createUploadURL}
