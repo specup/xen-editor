@@ -88,19 +88,24 @@ const MenuBar: FunctionComponent<MenuBarProps> = ({ className, menus }) => {
   if (menus?.length && menus?.length > 0) {
     return (
       <MenuRoot className={className}>
-        {menus.map((menu) => {
+        {menus.map((menu, index) => {
           if (typeof menu === 'string') {
             return (
-              <MenuSection>
+              <MenuSection key={`MenuSection-${index}`}>
                 <MenuComponent menu={menu} />
               </MenuSection>
             )
           } else {
             return (
-              <MenuSection>
+              <MenuSection key={`MenuSection-${index}`}>
                 <Buttons>
-                  {menu.map((item) => {
-                    return <MenuComponent menu={item} />
+                  {menu.map((item, index) => {
+                    return (
+                      <MenuComponent
+                        key={`MenuComponent-${index}`}
+                        menu={item}
+                      />
+                    )
                   })}
                 </Buttons>
               </MenuSection>
