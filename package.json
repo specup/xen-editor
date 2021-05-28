@@ -46,7 +46,7 @@
     "prosemirror-utils": "^0.9.6",
     "prosemirror-view": "^1.14.3",
     "react-color": "^2.17.3",
-    "url-parse": "^1.4.7"
+    "url-parse": "^1.5.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
