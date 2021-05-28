@@ -23,6 +23,20 @@ import MobileLayout from './MobileLayout'
 
 export { EditorAPI }
 
+export type MenuItem =
+  | 'FontFamily'
+  | 'FontSize'
+  | 'TextDecoration'
+  | 'Color'
+  | 'Align'
+  | 'Indent'
+  | 'LineHeight'
+  | 'InsertImage'
+  | 'InsertYoutube'
+  | 'Link'
+
+export type Menu = MenuItem | MenuItem[]
+
 export interface EditorProps extends FileUploadUtils {
   className?: string
   editorClassName?: string
@@ -32,6 +46,7 @@ export interface EditorProps extends FileUploadUtils {
   onChange?: (view: EditorView) => void
   onFocus?: FocusEventHandler<HTMLDivElement>
   onBlur?: FocusEventHandler<HTMLDivElement>
+  menus?: Menu[]
 }
 
 const Editor: RefForwardingComponent<EditorAPI, EditorProps> = (
@@ -44,6 +59,7 @@ const Editor: RefForwardingComponent<EditorAPI, EditorProps> = (
     onChange,
     onFocus,
     onBlur,
+    menus,
     ...other
   },
   ref,
@@ -56,11 +72,7 @@ const Editor: RefForwardingComponent<EditorAPI, EditorProps> = (
     (ref: Ref) => {
       const element = <div ref={ref} />
       return isMobile.any ? (
-        <MobileLayout
-          className={className}
-          onFocus={onFocus}
-          onBlur={onBlur}
-        >
+        <MobileLayout className={className} onFocus={onFocus} onBlur={onBlur}>
           {element}
         </MobileLayout>
       ) : (
@@ -69,6 +81,7 @@ const Editor: RefForwardingComponent<EditorAPI, EditorProps> = (
           menuClassName={desktopMenuClassName}
           onFocus={onFocus}
           onBlur={onBlur}
+          menus={menus}
         >
           {element}
         </DesktopLayout>

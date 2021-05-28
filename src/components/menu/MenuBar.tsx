@@ -8,10 +8,13 @@ import MenuListColor from './MenuListColor'
 import MenuListAlign from './MenuListAlign'
 import MenuListIndent from './MenuListIndent'
 import MenuItemLineHeight from './MenuItemLineHeight'
-import MenuItemInsertImage, { MenuItemInsertImageAPI } from './MenuItemInsertImage'
+import MenuItemInsertImage, {
+  MenuItemInsertImageAPI,
+} from './MenuItemInsertImage'
 import MenuItemInsertYoutube from './MenuItemInsertYoutube'
 import MenuItemLink from './MenuItemLink'
 import { Buttons, MenuButton } from './base'
+import { Menu, MenuItem } from 'components/Editor'
 
 const MenuRoot = styled('div')({
   display: 'flex',
@@ -29,6 +32,7 @@ const MenuSection = styled('div')({
 
 interface MenuBarProps {
   className?: string
+  menus?: Menu[]
 }
 
 const MenuItemInsertImageContainer: FunctionComponent = () => {
@@ -59,7 +63,53 @@ function renderInsertYoutube(onClick: () => any) {
   )
 }
 
-const MenuBar: FunctionComponent<MenuBarProps> = ({ className }) => {
+interface MenuComponentProps {
+  menu: MenuItem
+}
+
+const MenuComponent: FunctionComponent<MenuComponentProps> = ({ menu }) => {
+  const components = {
+    FontFamily: MenuItemFontFamily,
+    FontSize: MenuItemFontSize,
+    TextDecoration: MenuListTextDecoration,
+    Color: MenuListColor,
+    Align: MenuListAlign,
+    Indent: MenuListIndent,
+    LineHeight: MenuItemLineHeight,
+    InsertImage: MenuItemInsertImageContainer,
+    InsertYoutube: MenuItemInsertYoutube,
+    Link: MenuItemLink,
+  }
+  const MenuComponent = components[menu]
+  return <MenuComponent render={renderInsertYoutube} />
+}
+
+const MenuBar: FunctionComponent<MenuBarProps> = ({ className, menus }) => {
+  if (menus?.length && menus?.length > 0) {
+    return (
+      <MenuRoot className={className}>
+        {menus.map((menu) => {
+          if (typeof menu === 'string') {
+            return (
+              <MenuSection>
+                <MenuComponent menu={menu} />
+              </MenuSection>
+            )
+          } else {
+            return (
+              <MenuSection>
+                <Buttons>
+                  {menu.map((item) => {
+                    return <MenuComponent menu={item} />
+                  })}
+                </Buttons>
+              </MenuSection>
+            )
+          }
+        })}
+      </MenuRoot>
+    )
+  }
   return (
     <MenuRoot className={className}>
       <MenuSection>
